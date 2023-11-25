@@ -1,52 +1,42 @@
 const express = require("express");
-const { MongoClient, ServerApiVersion } = require("mongodb");
-const cors = require("cors");
-const app = express();
+const applyMiddleware = require("./src/middlewares/applyMiddleware");
+const connectDB = require("./src/db/connectDB");
 require("dotenv").config();
-
+const app = express();
 const port = process.env.PORT || 5000;
 
-console.log(process.env.DB_USER);
+//routes
+const userRoutes = require("./src/routes/users");
 
-//  MONGODB DATABASE USER PASSWORD
-// rokibulhasanph
-// oCfvlPNoFgB07OxV
+applyMiddleware(app);
 
-const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.udorxk7.mongodb.net/?retryWrites=true&w=majority`;
+app.use(userRoutes);
 
-// Create a MongoClient with a MongoClientOptions object to set the Stable API version
-const client = new MongoClient(uri, {
-  serverApi: {
-    version: ServerApiVersion.v1,
-    strict: true,
-    deprecationErrors: true,
-  },
-});
 
-async function run() {
-  try {
-    // Connect the client to the server	(optional starting in v4.7)
-    await client.connect();
 
-    // Send a ping to confirm a successful connection
-    await client.db("admin").command({ ping: 1 });
-    console.log(
-      "Pinged your deployment. You successfully connected to MongoDB!"
-    );
-  } finally {
-    // Ensures that the client will close when you finish/error
-    // await client.close();
-  }
-}
-run().catch(console.dir);
-
-app.use(cors());
-app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.send("Crud is running...");
+  res.send("Service Server Is Running");
 });
 
-app.listen(port, () => {
-  console.log(`Simple Crud is Running on port ${port}`);
+app.all("*", (req, res, next) => {
+  const err = new Error(`The Requested URL [${req.url}] Is Invalid`);
+  err.status = 404;
+  next(err);
 });
+
+app.use((err, req, res, next) => {
+  res.status(err.status || 500).json({
+    message: err.message,
+  });
+});
+
+// database connect
+const main = async () => {
+  await connectDB();
+  app.listen(port, () => {
+    console.log(`Server Running on Port : ${port}`);
+  });
+};
+
+main();
