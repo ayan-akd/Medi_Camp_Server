@@ -7,11 +7,11 @@ const port = process.env.PORT || 5000;
 
 //routes
 const userRoutes = require("./src/routes/users");
-
+const campRoutes = require("./src/routes/camps");
 applyMiddleware(app);
 
 app.use(userRoutes);
-
+app.use(campRoutes);
 
 
 

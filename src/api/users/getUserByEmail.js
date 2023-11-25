@@ -1,6 +1,6 @@
 const User = require('../../models/Users');
 
-const getUsers = async (req, res, next) => {
+const getUserByEmail = async (req, res, next) => {
     try {
         const { email } = req.query;
         const users = await User.find({ email });
@@ -10,4 +10,4 @@ const getUsers = async (req, res, next) => {
     }
 };
 
-module.exports = getUsers;
+module.exports = getUserByEmail;
