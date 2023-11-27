@@ -14,6 +14,18 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
+    age: {
+      type: Number,
+    },
+    gender : {
+      type: String,
+    },
+    phone : {
+      type: String,
+    },
+    address : {
+      type: String,
+    },
   },
   {
     collection: "users",

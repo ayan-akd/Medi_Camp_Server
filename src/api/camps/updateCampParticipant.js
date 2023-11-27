@@ -1,9 +1,7 @@
 const Camps = require("../../models/Camps");
 const updateCampParticipant = async (req, res, next) => {
   try {
-    console.log(req.params.id);
     const { id } = req.params;
-    console.log(id);
     const camp = await Camps.findById(id);
     if (!camp) {
       return res.status(404).send({ message: "Camp not found" });
