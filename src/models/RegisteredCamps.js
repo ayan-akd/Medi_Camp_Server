@@ -46,6 +46,14 @@ const registeredCampSchema = new Schema(
             type: String,
             required: true,
         },
+        payment: {
+            type: String,
+            required: true,
+        },
+        confirmation: {
+            type: String,
+            required: true,
+        },
     },
     {
         collection: "registeredCamps",
