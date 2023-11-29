@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
 
-const registeredCampSchema = new Schema(
+const growingListSchema = new Schema(
   {
     name: {
       type: String,
@@ -98,13 +98,12 @@ const registeredCampSchema = new Schema(
     reviewPhoto: {
       type: String,
     },
-    role:{
-      type: String,
-    },
   },
   {
-    collection: "registeredCamps",
+    collection: "growingList",
   }
 );
-const registeredCamps = model("registeredCamps", registeredCampSchema);
-module.exports = registeredCamps;
+
+const growingLists = model("growingList", growingListSchema);
+
+module.exports = growingLists;

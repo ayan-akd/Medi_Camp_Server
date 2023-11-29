@@ -5,10 +5,11 @@ var getRegisteredCampsByEmail = require("../../api/registeredCamps/getRegistered
 const getRegisteredCamps = require("../../api/registeredCamps/getRegisteredCamps");
 const deleteRegisteredCamp = require("../../api/registeredCamps/deleteRegisteredCamp");
 const updateRegisteredCamps = require("../../api/registeredCamps/updateRegisteredCamp");
+const verifyToken = require("../../middlewares/verifyToken");
 
-router.post("/registeredCamps", postRegisteredCamps);
+router.post("/registeredCamps", verifyToken, postRegisteredCamps);
 router.get("/registeredCamps", getRegisteredCampsByEmail);
 router.get("/registeredCamp", getRegisteredCamps);
-router.delete("/registeredCamps/:id", deleteRegisteredCamp);
-router.put("/registeredCamp/:id", updateRegisteredCamps);
+router.delete("/registeredCamps/:id", verifyToken, deleteRegisteredCamp);
+router.put("/registeredCamp/:id", verifyToken, updateRegisteredCamps);
 module.exports = router;

@@ -1,8 +1,11 @@
 // Server-side (Express route handler)
-const User = require('../../models/Users');
+const User = require("../../models/Users");
 
 const updateUser = async (req, res, next) => {
   try {
+    if (req.user.email !== req.query.email) {
+      return res.status(403).send({ message: "Forbidden Access" });
+    }
     const { id } = req.params;
     const user = await User.findById(id);
     if (!user) {
@@ -15,6 +18,8 @@ const updateUser = async (req, res, next) => {
     if (req.body.gender) user.gender = req.body.gender;
     if (req.body.phone) user.phone = req.body.phone;
     if (req.body.address) user.address = req.body.address;
+    if (req.body.specialty) user.specialty = req.body.specialty;
+    if (req.body.certifications) user.certifications = req.body.certifications;
 
     const result = await user.save();
 

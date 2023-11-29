@@ -17,13 +17,19 @@ const userSchema = new Schema(
     age: {
       type: Number,
     },
-    gender : {
+    gender: {
       type: String,
     },
-    phone : {
+    phone: {
       type: String,
     },
-    address : {
+    address: {
+      type: String,
+    },
+    specialty: {
+      type: String,
+    },
+    certifications: {
       type: String,
     },
   },

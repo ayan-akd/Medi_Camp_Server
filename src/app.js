@@ -7,16 +7,23 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const port = process.env.PORT || 5000;
 
 //routes
+const authenticationRoutes = require("./routes/authentication/index");
 const userRoutes = require("./routes/users");
 const campRoutes = require("./routes/camps");
 const registeredCampRoutes = require("./routes/RegisteredCamps");
+const stripePaymentRoutes = require("./routes/StripePayment");
+const upcomingCampsRoutes = require("./routes/upcomingCamps");
+const growingListsRoutes = require("./routes/GrowingLists");
 
 applyMiddleware(app);
 
+app.use(authenticationRoutes);
 app.use(userRoutes);
 app.use(campRoutes);
 app.use(registeredCampRoutes);
-
+app.use(stripePaymentRoutes);
+app.use(upcomingCampsRoutes);
+app.use(growingListsRoutes);
 
 
 app.get("/", (req, res) => {
@@ -35,14 +42,6 @@ app.use((err, req, res, next) => {
   });
 });
 
-// database connect
-// const main = async () => {
-//   await connectDB();
-//   app.listen(port, () => {
-//     console.log(`Server Running on Port : ${port}`);
-//   });
-// };
 
-// main();
 
 module.exports = app;

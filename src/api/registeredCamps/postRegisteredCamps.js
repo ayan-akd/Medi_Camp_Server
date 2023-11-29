@@ -2,6 +2,9 @@ const registeredCamps = require("../../models/RegisteredCamps");
 
 const postRegisteredCamps = async (req, res, next) => {
   try {
+    if (req.user.email !== req.query.email) {
+      return res.status(403).send({ message: "Forbidden Access" });
+    }
     const newRegisteredCamp = req.body;
     const existingRegisteredCamp = await registeredCamps.findOne({
       campId: newRegisteredCamp.campId,
