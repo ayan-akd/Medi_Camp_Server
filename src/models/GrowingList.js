@@ -12,31 +12,31 @@ const growingListSchema = new Schema(
     },
     age: {
       type: Number,
-      required: true,
     },
     gender: {
       type: String,
-      required: true,
     },
     fee: {
       type: Number,
-      required: true,
     },
     phone: {
       type: String,
       required: true,
     },
+    specialty: {
+      type: String,
+    },
+    qualification: {
+      type: String,
+    },
     address: {
       type: String,
-      required: true,
     },
     problems: {
       type: String,
-      required: true,
     },
     emergency: {
       type: String,
-      required: true,
     },
     hostEmail: {
       type: String,
@@ -48,7 +48,6 @@ const growingListSchema = new Schema(
     },
     payment: {
       type: String,
-      required: true,
     },
     confirmation: {
       type: String,
@@ -68,7 +67,6 @@ const growingListSchema = new Schema(
     },
     professionals: {
       type: String,
-      required: true,
     },
     location: {
       type: String,
@@ -97,6 +95,10 @@ const growingListSchema = new Schema(
     },
     reviewPhoto: {
       type: String,
+    },
+    role : {
+      type: String,
+      required: true,
     },
   },
   {

@@ -68,7 +68,6 @@ const registeredCampSchema = new Schema(
     },
     professionals: {
       type: String,
-      required: true,
     },
     location: {
       type: String,

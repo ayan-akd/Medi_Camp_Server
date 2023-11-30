@@ -13,7 +13,7 @@ const campRoutes = require("./routes/camps");
 const registeredCampRoutes = require("./routes/RegisteredCamps");
 const stripePaymentRoutes = require("./routes/StripePayment");
 const upcomingCampsRoutes = require("./routes/upcomingCamps");
-const growingListsRoutes = require("./routes/GrowingLists");
+const growingListsRoutes = require("./routes/GrowingList");
 
 applyMiddleware(app);
 

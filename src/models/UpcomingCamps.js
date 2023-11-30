@@ -49,10 +49,6 @@ const upcomingCampSchema = new Schema(
       type: Number,
       default: 0,
     },
-    intParticipants: {
-      type: Number,
-      default: 0,
-    },
     intPro: {
       type: Number,
       default: 0,

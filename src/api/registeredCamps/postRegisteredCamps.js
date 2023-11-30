@@ -10,14 +10,15 @@ const postRegisteredCamps = async (req, res, next) => {
       campId: newRegisteredCamp.campId,
       email: newRegisteredCamp.email,
     });
-    if(existingRegisteredCamp) {
+    if (existingRegisteredCamp) {
       res.status(409).send({ message: "Already registered for this camp" });
       return;
     } else {
-        const result = await registeredCamps.create(newRegisteredCamp);
-        res.status(200).send({ message: "Registered Camp added successfully", result });
+      const result = await registeredCamps.create(newRegisteredCamp);
+      res
+        .status(200)
+        .send({ message: "Registered Camp added successfully", result });
     }
-    
   } catch (error) {
     next(error);
   }
