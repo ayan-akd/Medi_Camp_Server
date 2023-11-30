@@ -8,11 +8,11 @@ var updateGrowingList = require("../../api/GrowingLists/updateGrowingLists");
 var getGrowingList = require("../../api/GrowingLists/getGrowingList");
 const verifyToken = require("../../middlewares/verifyToken");
 
-router.get("/growingLists", verifyToken, getGrowingList);
-router.get("/growingList", verifyToken, getGrowingListsByEmail);
-router.get("/growingList/:id", verifyToken, getGrowingListById);
-router.post("/growingList", verifyToken, postGrowingLists);
-router.put("/growingList/:id", verifyToken, updateGrowingList);
-router.delete("/growingList/:id", verifyToken, deleteGrowingList);
+router.get("/growingLists", getGrowingList);
+router.get("/growingList", getGrowingListsByEmail);
+router.get("/growingList/:id", getGrowingListById);
+router.post("/growingList", postGrowingLists);
+router.put("/growingList/:id", updateGrowingList);
+router.delete("/growingList/:id", deleteGrowingList);
 
 module.exports = router;
