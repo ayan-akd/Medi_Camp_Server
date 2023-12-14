@@ -11,8 +11,8 @@ const verifyToken = require("../../middlewares/verifyToken");
 router.get("/growingLists", getGrowingList);
 router.get("/growingList", getGrowingListsByEmail);
 router.get("/growingList/:id", getGrowingListById);
-router.post("/growingList", postGrowingLists);
-router.put("/growingList/:id", updateGrowingList);
-router.delete("/growingList/:id", deleteGrowingList);
+router.post("/growingList", verifyToken, postGrowingLists);
+router.put("/growingList/:id",verifyToken, updateGrowingList);
+router.delete("/growingList/:id",verifyToken, deleteGrowingList);
 
 module.exports = router;

@@ -2,7 +2,9 @@ const GrowingList = require("../../models/GrowingList");
 
 const postGrowingLists = async (req, res, next) => {
   try {
-
+    if (req.user.email !== req.query.email) {
+      return res.status(403).send({ message: "Forbidden Access" });
+    }
     const newGrowingList = req.body;
     const existingGrowingList = await GrowingList.findOne({
       campId: newGrowingList.campId,
