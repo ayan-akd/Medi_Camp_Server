@@ -10,7 +10,6 @@ const updateUpcomingCamp = async (req, res, next) => {
         if(!camp){
             return res.status(404).send({message: 'Camp not found'});
         }
-        console.log("hit");
         const result = await UpcomingCamps.findByIdAndUpdate(id, req.body, {new: true});
         res.status(200).send({message: 'Camp updated successfully', result});
     } catch(error){

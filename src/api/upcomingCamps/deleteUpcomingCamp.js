@@ -6,7 +6,6 @@ const deleteUpcomingCamp = async (req, res, next) => {
       return res.status(403).send({ message: "Forbidden Access" });
     }
     const { id } = req.params;
-    console.log(id);
     const camp = await UpcomingCamps.findByIdAndDelete(id);
     if (!camp) {
       return res.status(404).send({ message: "Upcoming Camp not found" });
